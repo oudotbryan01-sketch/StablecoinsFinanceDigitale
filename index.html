@@ -1,0 +1,1145 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Stablecoins — La Monnaie du Futur</title>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg:#f8f7f4; --surface:#fff; --line:#e4e2dd;
+  --ink:#1a1916; --mid:#7a7670; --soft:#c0bdb5;
+  --green:#1a6648; --green-bg:#edf5f1; --green-mid:#2d8a60;
+  --red:#b03a2e; --red-bg:#fdf0ee;
+  --gold:#8a6a00; --gold-bg:#fdf8ec;
+  --blue:#1a3a6b; --blue-bg:#eef2f9;
+}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--ink);font-family:'Inter',sans-serif;font-size:19px;line-height:1.75;-webkit-font-smoothing:antialiased}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;align-items:center;justify-content:space-between;padding:0 3rem;height:58px;background:rgba(248,247,244,.94);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+.nav-logo{font-family:'Instrument Serif',serif;font-size:1.1rem;color:var(--ink)}
+.nav-links{display:flex;gap:.25rem;list-style:none}
+.nav-links a{display:block;padding:.3rem .8rem;font-size:.8rem;font-weight:500;color:var(--mid);text-decoration:none;border-radius:6px;transition:color .15s,background .15s}
+.nav-links a:hover,.nav-links a.active{color:var(--ink);background:var(--line)}
+
+/* LAYOUT */
+.page{max-width:960px;margin:0 auto;padding:0 2.5rem}
+section{padding:7rem 0 5rem;border-bottom:1px solid var(--line)}
+
+/* TYPOGRAPHY */
+.eyebrow{display:inline-flex;align-items:center;gap:.5rem;font-size:.75rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--green);margin-bottom:1.25rem}
+.eyebrow::before{content:'';width:18px;height:1.5px;background:currentColor;flex-shrink:0}
+h1{font-family:'Instrument Serif',serif;font-size:clamp(3rem,6vw,4.8rem);line-height:1.06;font-weight:400;color:var(--ink);margin-bottom:1.5rem}
+h1 em{font-style:italic;color:var(--green)}
+h2{font-family:'Instrument Serif',serif;font-size:clamp(2.2rem,4vw,3rem);font-weight:400;line-height:1.15;color:var(--ink);margin-bottom:1rem}
+h2 em{font-style:italic}
+h3{font-size:1.05rem;font-weight:600;color:var(--ink);margin-bottom:.5rem}
+.lead{font-size:1.1rem;color:var(--mid);max-width:660px;margin-bottom:3rem;line-height:1.75}
+
+/* HERO */
+#intro{padding-top:9rem;padding-bottom:6rem;border-bottom:1px solid var(--line)}
+.hero-kicker{display:inline-flex;align-items:center;gap:.5rem;font-size:.82rem;font-weight:500;color:var(--mid);background:var(--surface);border:1px solid var(--line);border-radius:100px;padding:.38rem 1.1rem;margin-bottom:2.5rem}
+.hero-kicker span{width:7px;height:7px;background:var(--green);border-radius:50%;animation:blink 2.5s ease infinite}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.3}}
+.hero-stats{display:flex;gap:0;margin-top:3.5rem;border:1px solid var(--line);border-radius:14px;overflow:hidden;background:var(--surface)}
+.stat-block{flex:1;padding:2rem;border-right:1px solid var(--line)}
+.stat-block:last-child{border-right:none}
+.stat-val{font-family:'Instrument Serif',serif;font-size:2.6rem;color:var(--ink);line-height:1;margin-bottom:.4rem}
+.stat-label{font-size:.85rem;color:var(--mid);line-height:1.4}
+
+/* CARDS */
+.grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:1.4rem;margin-top:2.5rem}
+.grid-2{display:grid;grid-template-columns:repeat(2,1fr);gap:1.4rem;margin-top:2.5rem}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:1.9rem}
+.card-icon{font-size:1.4rem;margin-bottom:.8rem;display:block}
+.card p{font-size:.95rem;color:var(--mid);line-height:1.7}
+
+/* STORY */
+.story-grid{display:grid;grid-template-columns:1fr 1fr;gap:2rem;align-items:start;margin-top:2.5rem}
+.problem-list{display:flex;flex-direction:column;gap:1rem}
+.problem-item{display:flex;gap:1rem;align-items:flex-start;background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:1.4rem}
+.problem-num{font-family:'Instrument Serif',serif;font-size:1.5rem;color:var(--soft);line-height:1;flex-shrink:0;width:1.6rem}
+.problem-item h3{margin-bottom:.25rem}
+.problem-item p{font-size:.92rem;color:var(--mid)}
+.story-callout{background:var(--green-bg);border:1px solid #c3ddd3;border-radius:14px;padding:2.1rem}
+.story-callout blockquote{font-family:'Instrument Serif',serif;font-size:1.4rem;font-style:italic;line-height:1.4;color:var(--ink);margin-bottom:1.5rem}
+.steps{display:flex;flex-direction:column}
+.step{display:flex;gap:1rem;align-items:flex-start;padding:.8rem 0;border-bottom:1px solid #c3ddd3}
+.step:last-child{border-bottom:none}
+.step-dot{width:22px;height:22px;border-radius:50%;background:var(--green);color:#fff;font-size:.68rem;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:3px}
+.step-text{font-size:.92rem;color:var(--ink)}
+.step-text strong{color:var(--green)}
+
+/* TYPE CARDS */
+.type-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:1.4rem;margin-top:2.5rem}
+.type-card{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:1.9rem}
+.type-tag{display:inline-block;font-size:.7rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;padding:.27rem .7rem;border-radius:100px;margin-bottom:1rem}
+.tag-green{background:var(--green-bg);color:var(--green)}
+.tag-blue{background:var(--blue-bg);color:var(--blue)}
+.tag-red{background:var(--red-bg);color:var(--red)}
+.type-card p{font-size:.92rem;color:var(--mid);margin-bottom:1rem}
+.tokens{display:flex;gap:.4rem;flex-wrap:wrap;margin-bottom:1rem}
+.token{background:var(--bg);border:1px solid var(--line);border-radius:6px;padding:.17rem .55rem;font-size:.75rem;font-weight:600;color:var(--ink)}
+.stab-bar{height:4px;background:var(--line);border-radius:100px;overflow:hidden;margin-top:.3rem}
+.stab-fill{height:100%;border-radius:100px}
+.stab-label{font-size:.75rem;color:var(--mid);display:flex;justify-content:space-between;margin-bottom:.25rem}
+
+/* FLOW */
+.flow{display:flex;align-items:stretch;background:var(--surface);border:1px solid var(--line);border-radius:14px;overflow:hidden;margin-top:2.5rem}
+.flow-node{flex:1;padding:1.75rem 1.1rem;text-align:center;border-right:1px solid var(--line)}
+.flow-node:last-child{border-right:none}
+.flow-emoji{font-size:1.6rem;margin-bottom:.6rem}
+.flow-name{font-size:.88rem;font-weight:600;color:var(--ink);margin-bottom:.3rem}
+.flow-desc{font-size:.78rem;color:var(--mid);line-height:1.4}
+.flow-arr{width:26px;flex-shrink:0;display:flex;align-items:center;justify-content:center;color:var(--soft);font-size:.9rem}
+
+/* TIMELINE */
+.timeline{margin-top:2.5rem}
+.tl-item{display:grid;grid-template-columns:82px 1px 1fr;gap:0 1.6rem;padding-bottom:2.2rem}
+.tl-item:last-child{padding-bottom:0}
+.tl-year{font-family:'Instrument Serif',serif;font-size:1rem;color:var(--mid);padding-top:.1rem;text-align:right}
+.tl-line{position:relative;background:var(--line)}
+.tl-line::before{content:'';position:absolute;top:6px;left:50%;transform:translateX(-50%);width:11px;height:11px;border-radius:50%;background:var(--surface);border:2.5px solid var(--green)}
+.tl-content h3{margin-bottom:.3rem}
+.tl-content p{font-size:.92rem;color:var(--mid)}
+
+/* TABLE */
+.compare{margin-top:2.5rem;background:var(--surface);border:1px solid var(--line);border-radius:14px;overflow:hidden}
+.compare-header{display:grid;grid-template-columns:1.4fr 1fr 1fr;background:var(--bg);border-bottom:1px solid var(--line)}
+.compare-header div{padding:.9rem 1.35rem;font-size:.75rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--mid)}
+.compare-row{display:grid;grid-template-columns:1.4fr 1fr 1fr;border-bottom:1px solid var(--line)}
+.compare-row:last-child{border-bottom:none}
+.compare-row:hover{background:var(--bg)}
+.compare-row div{padding:.95rem 1.35rem;font-size:.92rem;color:var(--ink);display:flex;align-items:center}
+.compare-row .key{color:var(--mid);font-weight:500}
+.v-g{color:var(--green);font-weight:500}
+.v-r{color:var(--red);font-weight:500}
+
+/* BIG NUMBERS */
+.big-nums{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:14px;overflow:hidden;margin-top:2.5rem}
+.big-num{background:var(--surface);padding:2rem 1.6rem}
+.big-num-val{font-family:'Instrument Serif',serif;font-size:2.4rem;line-height:1;margin-bottom:.45rem}
+.big-num-label{font-size:.82rem;color:var(--mid)}
+
+/* DIFF */
+.diff-box{display:grid;grid-template-columns:1fr 44px 1fr;gap:1.4rem;align-items:start;margin-top:2.5rem}
+.diff-col{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:1.9rem}
+.diff-col h3{font-size:1rem;margin-bottom:1.3rem}
+.diff-col.trad h3{color:var(--red)}
+.diff-col.chain h3{color:var(--green)}
+.diff-vs{display:flex;align-items:center;justify-content:center;padding-top:4.5rem;font-size:.78rem;font-weight:600;letter-spacing:.1em;color:var(--soft)}
+.metric{display:flex;justify-content:space-between;align-items:center;padding:.7rem 0;border-bottom:1px solid var(--line);font-size:.9rem}
+.metric:last-child{border-bottom:none}
+.metric-k{color:var(--mid)}
+.metric-v{font-weight:500}
+.v-g2{color:var(--green);font-weight:500}
+.v-r2{color:var(--red);font-weight:500}
+
+/* GEO */
+.geo-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;margin-top:2.5rem}
+.geo-panel{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:1.9rem}
+.geo-panel h3{margin-bottom:1.5rem}
+.bar-row{display:flex;align-items:center;gap:.8rem;margin-bottom:.9rem}
+.bar-label{width:115px;font-size:.83rem;color:var(--mid);text-align:right;flex-shrink:0}
+.bar-track{flex:1;height:6px;background:var(--line);border-radius:100px;overflow:hidden}
+.bar-fill{height:100%;border-radius:100px;background:var(--ink)}
+.bar-pct{width:36px;font-size:.78rem;font-weight:600;color:var(--ink)}
+
+/* RISK */
+.risk-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.4rem;margin-top:2.5rem}
+.risk-item{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:1.6rem}
+.risk-item h3{margin-bottom:.45rem}
+.risk-item p{font-size:.92rem;color:var(--mid);margin-bottom:.8rem}
+
+/* BADGE */
+.badge{display:inline-flex;align-items:center;gap:.3rem;padding:.22rem .7rem;border-radius:100px;font-size:.72rem;font-weight:600;letter-spacing:.05em}
+.badge-red{background:var(--red-bg);color:var(--red)}
+.badge-gold{background:var(--gold-bg);color:var(--gold)}
+.badge-green{background:var(--green-bg);color:var(--green)}
+
+/* PROS/CONS */
+.pros-cons{display:grid;grid-template-columns:1fr 1fr;gap:1.4rem;margin-top:2rem}
+.pros,.cons{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:1.9rem}
+.pros h3{color:var(--green);margin-bottom:1rem}
+.cons h3{color:var(--red);margin-bottom:1rem}
+.pc-list{list-style:none}
+.pc-list li{display:flex;align-items:flex-start;gap:.65rem;padding:.65rem 0;border-bottom:1px solid var(--line);font-size:.92rem;color:var(--mid)}
+.pc-list li:last-child{border-bottom:none}
+.pc-list li::before{font-size:.85rem;flex-shrink:0;margin-top:3px}
+.pros .pc-list li::before{content:'✓';color:var(--green)}
+.cons .pc-list li::before{content:'✗';color:var(--red)}
+
+/* ALERT */
+.alert{display:flex;gap:1.3rem;align-items:flex-start;background:var(--red-bg);border:1px solid #e8c4c1;border-radius:14px;padding:1.6rem;margin-top:2.5rem}
+.alert-icon{font-size:1.5rem;flex-shrink:0}
+.alert h3{color:var(--red);margin-bottom:.3rem}
+.alert p{font-size:.92rem;color:var(--mid)}
+
+/* CONCLUSION */
+#conclusion{padding-bottom:7rem;text-align:center}
+.pill-row{display:flex;flex-wrap:wrap;gap:.65rem;justify-content:center;margin:2.5rem 0}
+.pill{background:var(--surface);border:1px solid var(--line);border-radius:100px;padding:.5rem 1.2rem;font-size:.88rem;color:var(--mid)}
+.closing-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.4rem;margin:2.5rem auto;max-width:860px;text-align:left}
+.closing-card{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:1.6rem}
+.closing-card .card-icon{font-size:1.15rem}
+.closing-card p{font-size:.92rem;color:var(--mid)}
+.thank-you{display:inline-block;margin-top:2.5rem;padding:.8rem 2.2rem;border:1px solid var(--line);border-radius:100px;font-size:.92rem;color:var(--mid)}
+
+/* DIVIDER */
+.part-divider{border-top:1px solid var(--line);border-bottom:1px solid var(--line);background:var(--surface);text-align:center;padding:3.5rem 2rem}
+.part-divider .eyebrow{justify-content:center}
+.part-divider h2{font-size:1.9rem}
+
+/* INFOGRAPHIC HELPERS */
+.infographic{margin-top:2.5rem}
+svg text{font-family:'Inter',sans-serif}
+
+/* FADE */
+.fade{opacity:0;transform:translateY(14px);transition:opacity .45s ease,transform .45s ease}
+.fade.in{opacity:1;transform:none}
+
+/* SCROLL TOP */
+#scrollTop{position:fixed;bottom:1.5rem;right:1.5rem;z-index:99;background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:.55rem 1rem;font-size:.8rem;color:var(--mid);text-decoration:none;opacity:0;pointer-events:none;transition:opacity .2s;font-weight:500}
+#scrollTop.show{opacity:1;pointer-events:all}
+#scrollTop:hover{color:var(--ink)}
+
+/* RESPONSIVE */
+@media(max-width:880px){
+  nav{padding:0 1.5rem}
+  .nav-links{display:none}
+  .page{padding:0 1.5rem}
+  .story-grid,.grid-3,.type-cards,.geo-grid,.risk-grid,.pros-cons,.diff-box,.closing-grid{grid-template-columns:1fr}
+  .hero-stats{flex-direction:column}
+  .stat-block{border-right:none;border-bottom:1px solid var(--line)}
+  .stat-block:last-child{border-bottom:none}
+  .big-nums{grid-template-columns:1fr 1fr}
+  .flow{flex-wrap:wrap}
+  .flow-node{min-width:45%}
+  .flow-arr{display:none}
+  .diff-vs{padding-top:0}
+  .compare-header,.compare-row{grid-template-columns:1fr 1fr}
+  .compare-header div:first-child,.compare-row div:first-child{display:none}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo">Stablecoins</div>
+  <ul class="nav-links">
+    <li><a href="#intro">Intro</a></li>
+    <li><a href="#story">Cas SpaceX</a></li>
+    <li><a href="#definition">Définition</a></li>
+    <li><a href="#fonctionnement">Fonctionnement</a></li>
+    <li><a href="#regulation">Régulation</a></li>
+    <li><a href="#tresorerie">Trésorerie</a></li>
+    <li><a href="#geopolitique">Géopolitique</a></li>
+    <li><a href="#disruption">Disruption</a></li>
+    <li><a href="#risques">Risques</a></li>
+    <li><a href="#conclusion">Conclusion</a></li>
+  </ul>
+</nav>
+
+
+<!-- ═══ HERO ═══ -->
+<div id="intro">
+  <div class="page">
+    <div class="hero-kicker"><span></span>Exposé Finance &amp; Technologie — 2025</div>
+    <h1>Les <em>stablecoins</em><br>redéfinissent<br>la finance mondiale</h1>
+    <p class="lead">Une analyse à travers le prisme de SpaceX — de la problématique concrète aux enjeux géopolitiques de demain.</p>
+    <div class="hero-stats">
+      <div class="stat-block">
+        <div class="stat-val">$180 Md</div>
+        <div class="stat-label">Capitalisation mondiale des stablecoins</div>
+      </div>
+      <div class="stat-block">
+        <div class="stat-val">24 / 7</div>
+        <div class="stat-label">Disponibilité vs. banques traditionnelles</div>
+      </div>
+      <div class="stat-block">
+        <div class="stat-val">&lt; 60 s</div>
+        <div class="stat-label">Délai d'un transfert international</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- ═══ CAS SPACEX ═══ -->
+<section id="story" class="fade">
+  <div class="page">
+    <div class="eyebrow">Cas concret</div>
+    <h2>SpaceX face aux limites<br>du système bancaire</h2>
+    <p class="lead">En 2023, SpaceX opère dans 30 pays et règle des fournisseurs en Allemagne, au Japon et au Mexique. Comment payer vite, partout, sans se ruiner en frais ?</p>
+
+    <div class="story-grid">
+      <div class="problem-list">
+        <div class="problem-item">
+          <div class="problem-num">1</div>
+          <div>
+            <h3>Délais — 2 à 5 jours</h3>
+            <p>Un virement SWIFT international prend plusieurs jours ouvrés. Dans l'industrie spatiale, chaque heure compte.</p>
+          </div>
+        </div>
+        <div class="problem-item">
+          <div class="problem-num">2</div>
+          <div>
+            <h3>Coûts — jusqu'à 5 % de frais</h3>
+            <p>Sur 500 M$ de paiements annuels, cela représente jusqu'à 25 M$ perdus en frais de change et bancaires.</p>
+          </div>
+        </div>
+        <div class="problem-item">
+          <div class="problem-num">3</div>
+          <div>
+            <h3>Disponibilité — banques fermées</h3>
+            <p>Les virements urgents le week-end nécessitent des dérogations. L'argent doit circuler 24 h/24, 7 j/7.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="story-callout">
+        <blockquote>"Et si SpaceX payait ses fournisseurs en USDC directement, sans banque intermédiaire ?"</blockquote>
+        <div class="steps">
+          <div class="step"><div class="step-dot">1</div><div class="step-text">SpaceX détient des <strong>USDC</strong> dans un wallet crypto</div></div>
+          <div class="step"><div class="step-dot">2</div><div class="step-text">Transfert validé en quelques secondes via blockchain</div></div>
+          <div class="step"><div class="step-dot">3</div><div class="step-text">Le fournisseur reçoit l'équivalent en USD instantanément</div></div>
+          <div class="step"><div class="step-dot">✓</div><div class="step-text"><strong>Frais &lt; 0,1 % · Délai &lt; 1 min · 24 h/24</strong></div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- INFOGRAPHIC: Économies SpaceX -->
+    <div class="infographic">
+      <svg viewBox="0 0 900 200" xmlns="http://www.w3.org/2000/svg" style="width:100%;border:1px solid var(--line);border-radius:14px;background:#fff;overflow:visible">
+        <!-- Labels top -->
+        <text x="50" y="30" font-size="11" fill="#7a7670" font-weight="600" letter-spacing="1" text-anchor="middle">SWIFT</text>
+        <text x="450" y="30" font-size="11" fill="#7a7670" font-weight="600" letter-spacing="1" text-anchor="middle">VS</text>
+        <text x="850" y="30" font-size="11" fill="#1a6648" font-weight="600" letter-spacing="1" text-anchor="middle">STABLECOIN</text>
+
+        <!-- SWIFT bar: frais -->
+        <rect x="20" y="50" width="60" height="120" rx="6" fill="#fdf0ee" stroke="#e8c4c1" stroke-width="1"/>
+        <rect x="20" y="50" width="60" height="120" rx="6" fill="#b03a2e" opacity=".15"/>
+        <!-- fill 100% = bad -->
+        <rect x="20" y="50" width="60" height="120" rx="6" fill="#b03a2e" opacity=".7"/>
+        <text x="50" y="145" font-size="20" fill="#fff" font-weight="700" text-anchor="middle">5%</text>
+        <text x="50" y="185" font-size="11" fill="#7a7670" text-anchor="middle">Frais</text>
+
+        <!-- SWIFT bar: délai -->
+        <rect x="100" y="50" width="60" height="120" rx="6" fill="#b03a2e" opacity=".5"/>
+        <text x="130" y="145" font-size="18" fill="#fff" font-weight="700" text-anchor="middle">5 j</text>
+        <text x="130" y="185" font-size="11" fill="#7a7670" text-anchor="middle">Délai</text>
+
+        <!-- SWIFT bar: dispo -->
+        <rect x="180" y="90" width="60" height="80" rx="6" fill="#b03a2e" opacity=".35"/>
+        <text x="210" y="143" font-size="13" fill="#b03a2e" font-weight="600" text-anchor="middle">5j/7</text>
+        <text x="210" y="185" font-size="11" fill="#7a7670" text-anchor="middle">Dispo</text>
+
+        <!-- Divider -->
+        <line x1="420" y1="40" x2="420" y2="180" stroke="#e4e2dd" stroke-width="1.5" stroke-dasharray="4,4"/>
+        <text x="450" y="120" font-size="22" fill="#c0bdb5" font-weight="700" text-anchor="middle">≠</text>
+
+        <!-- STABLECOIN bar: frais -->
+        <rect x="660" y="163" width="60" height="7" rx="3" fill="#1a6648" opacity=".7"/>
+        <text x="690" y="157" font-size="14" fill="#1a6648" font-weight="700" text-anchor="middle">0,1%</text>
+        <text x="690" y="185" font-size="11" fill="#7a7670" text-anchor="middle">Frais</text>
+
+        <!-- STABLECOIN bar: délai -->
+        <rect x="740" y="163" width="60" height="7" rx="3" fill="#1a6648" opacity=".7"/>
+        <text x="770" y="157" font-size="14" fill="#1a6648" font-weight="700" text-anchor="middle">&lt; 60 s</text>
+        <text x="770" y="185" font-size="11" fill="#7a7670" text-anchor="middle">Délai</text>
+
+        <!-- STABLECOIN bar: dispo -->
+        <rect x="820" y="50" width="60" height="120" rx="6" fill="#1a6648" opacity=".8"/>
+        <text x="850" y="123" font-size="13" fill="#fff" font-weight="600" text-anchor="middle">24/7</text>
+        <text x="850" y="185" font-size="11" fill="#7a7670" text-anchor="middle">Dispo</text>
+
+        <!-- Economy callout -->
+        <rect x="280" y="55" width="270" height="110" rx="10" fill="#edf5f1" stroke="#c3ddd3" stroke-width="1"/>
+        <text x="415" y="82" font-size="11" fill="#1a6648" font-weight="600" text-anchor="middle" letter-spacing=".5">ÉCONOMIE POTENTIELLE</text>
+        <text x="415" y="118" font-size="30" fill="#1a6648" font-weight="700" text-anchor="middle" font-family="'Instrument Serif',serif">−95%</text>
+        <text x="415" y="142" font-size="11" fill="#7a7670" text-anchor="middle">sur les frais de transaction</text>
+      </svg>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══ DIAPO 1 — DÉFINITION ═══ -->
+<section id="definition" class="fade">
+  <div class="page">
+    <div class="eyebrow">Diapo 1</div>
+    <h2>Définition &amp; types de stablecoins</h2>
+    <p class="lead">Un stablecoin est une cryptomonnaie à valeur stable, indexée sur un actif de référence — dollar, euro, or. Il combine la technologie blockchain avec la stabilité monétaire.</p>
+
+    <!-- INFOGRAPHIC: BTC vs Stablecoin volatility -->
+    <div style="margin-bottom:2.5rem">
+      <svg viewBox="0 0 900 180" xmlns="http://www.w3.org/2000/svg" style="width:100%;border:1px solid var(--line);border-radius:14px;background:#fff;overflow:hidden">
+        <defs>
+          <linearGradient id="redGrad" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#b03a2e" stop-opacity=".15"/><stop offset="100%" stop-color="#b03a2e" stop-opacity="0"/></linearGradient>
+          <linearGradient id="greenGrad" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#1a6648" stop-opacity=".1"/><stop offset="100%" stop-color="#1a6648" stop-opacity="0"/></linearGradient>
+        </defs>
+        <!-- Left: BTC volatile -->
+        <rect x="0" y="0" width="440" height="180" fill="#fdf0ee" opacity=".4"/>
+        <text x="20" y="28" font-size="11" fill="#b03a2e" font-weight="600" letter-spacing="1">BITCOIN — VOLATILE</text>
+        <polyline points="20,90 60,40 100,110 140,30 180,120 220,50 260,100 300,20 340,80 380,45 420,95" fill="none" stroke="#b03a2e" stroke-width="2.5" stroke-linejoin="round"/>
+        <polygon points="20,90 60,40 100,110 140,30 180,120 220,50 260,100 300,20 340,80 380,45 420,95 420,160 20,160" fill="url(#redGrad)"/>
+        <text x="220" y="160" font-size="22" fill="#b03a2e" font-weight="700" font-family="'Instrument Serif',serif" text-anchor="middle">± 40 % / mois</text>
+
+        <!-- Divider -->
+        <line x1="450" y1="20" x2="450" y2="170" stroke="#e4e2dd" stroke-width="1.5"/>
+        <text x="450" y="97" font-size="20" fill="#c0bdb5" font-weight="700" text-anchor="middle">≠</text>
+
+        <!-- Right: stablecoin flat -->
+        <rect x="455" y="0" width="445" height="180" fill="#edf5f1" opacity=".5"/>
+        <text x="475" y="28" font-size="11" fill="#1a6648" font-weight="600" letter-spacing="1">STABLECOIN — STABLE</text>
+        <line x1="460" y1="90" x2="900" y2="90" stroke="#1a6648" stroke-width="2.5" stroke-dasharray="6,3"/>
+        <polygon points="460,90 900,90 900,160 460,160" fill="url(#greenGrad)"/>
+        <text x="678" y="160" font-size="22" fill="#1a6648" font-weight="700" font-family="'Instrument Serif',serif" text-anchor="middle">≈ $1,00</text>
+      </svg>
+    </div>
+
+    <div class="type-cards">
+      <div class="type-card">
+        <div class="type-tag tag-green">Type 1 — Réserves</div>
+        <h3>Adossés à des actifs réels</h3>
+        <p>Chaque token est couvert à 100 % par des dollars ou bons du Trésor. Le plus transparent et le plus utilisé.</p>
+        <div class="tokens"><span class="token">USDC</span><span class="token">USDT</span><span class="token">EURC</span></div>
+        <div class="stab-label"><span>Stabilité</span><span>95 %</span></div>
+        <div class="stab-bar"><div class="stab-fill" style="width:95%;background:var(--green)"></div></div>
+      </div>
+      <div class="type-card">
+        <div class="type-tag tag-blue">Type 2 — Crypto-collatéral</div>
+        <h3>Adossés à d'autres cryptos</h3>
+        <p>Surcollatéralisation en ETH ou BTC pour absorber la volatilité. Décentralisés, mais plus complexes.</p>
+        <div class="tokens"><span class="token">DAI</span><span class="token">crvUSD</span><span class="token">sUSD</span></div>
+        <div class="stab-label"><span>Stabilité</span><span>80 %</span></div>
+        <div class="stab-bar"><div class="stab-fill" style="width:80%;background:var(--blue)"></div></div>
+      </div>
+      <div class="type-card">
+        <div class="type-tag tag-red">Type 3 — Algorithmique</div>
+        <h3>Stabilité par algorithme</h3>
+        <p>Aucune réserve réelle. La parité est maintenue par offre/demande automatique. Risque maximal.</p>
+        <div class="tokens"><span class="token">UST ✗</span><span class="token">FRAX</span></div>
+        <div class="stab-label"><span>Stabilité</span><span>45 %</span></div>
+        <div class="stab-bar"><div class="stab-fill" style="width:45%;background:var(--red)"></div></div>
+      </div>
+    </div>
+
+    <!-- INFOGRAPHIC: Triangle types -->
+    <div class="infographic">
+      <svg viewBox="0 0 900 130" xmlns="http://www.w3.org/2000/svg" style="width:100%;border:1px solid var(--line);border-radius:14px;background:#fff">
+        <!-- Réserves -->
+        <rect x="20" y="20" width="260" height="90" rx="10" fill="#edf5f1" stroke="#c3ddd3" stroke-width="1"/>
+        <text x="40" y="50" font-size="12" fill="#1a6648" font-weight="600">Réserves fiduciaires</text>
+        <text x="40" y="70" font-size="11" fill="#7a7670">✓ Réserves en banque</text>
+        <text x="40" y="87" font-size="11" fill="#7a7670">✓ Audits réguliers</text>
+        <text x="40" y="104" font-size="11" fill="#7a7670">✓ Rachat 1:1 garanti</text>
+
+        <text x="330" y="70" font-size="18" fill="#c0bdb5" text-anchor="middle">→</text>
+
+        <!-- Crypto-collatéral -->
+        <rect x="360" y="20" width="260" height="90" rx="10" fill="#eef2f9" stroke="#c5d2e8" stroke-width="1"/>
+        <text x="380" y="50" font-size="12" fill="#1a3a6b" font-weight="600">Crypto-collatéralisé</text>
+        <text x="380" y="70" font-size="11" fill="#7a7670">△ Sur-collatéralisation 150%</text>
+        <text x="380" y="87" font-size="11" fill="#7a7670">△ Décentralisé</text>
+        <text x="380" y="104" font-size="11" fill="#7a7670">△ Liquidation automatique</text>
+
+        <text x="670" y="70" font-size="18" fill="#c0bdb5" text-anchor="middle">→</text>
+
+        <!-- Algo -->
+        <rect x="700" y="20" width="180" height="90" rx="10" fill="#fdf0ee" stroke="#e8c4c1" stroke-width="1"/>
+        <text x="720" y="50" font-size="12" fill="#b03a2e" font-weight="600">Algorithmique</text>
+        <text x="720" y="70" font-size="11" fill="#7a7670">✗ Pas de réserves</text>
+        <text x="720" y="87" font-size="11" fill="#7a7670">✗ Risque de dépeg</text>
+        <text x="720" y="104" font-size="11" fill="#7a7670">✗ Ex: Terra/UST 2022</text>
+      </svg>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══ DIAPO 2 — FONCTIONNEMENT ═══ -->
+<section id="fonctionnement" class="fade">
+  <div class="page">
+    <div class="eyebrow">Diapo 2</div>
+    <h2>Fonctionnement &amp; acteurs</h2>
+    <p class="lead">Comment se déroule concrètement un paiement SpaceX → fournisseur allemand via stablecoin ?</p>
+
+    <div class="flow">
+      <div class="flow-node">
+        <div class="flow-emoji">🚀</div>
+        <div class="flow-name">SpaceX</div>
+        <div class="flow-desc">Initie le paiement depuis son wallet USDC</div>
+      </div>
+      <div class="flow-arr">→</div>
+      <div class="flow-node">
+        <div class="flow-emoji">⛓️</div>
+        <div class="flow-name">Blockchain</div>
+        <div class="flow-desc">Ethereum ou Solana valide la transaction</div>
+      </div>
+      <div class="flow-arr">→</div>
+      <div class="flow-node">
+        <div class="flow-emoji">📄</div>
+        <div class="flow-name">Smart Contract</div>
+        <div class="flow-desc">Exécution automatique des conditions</div>
+      </div>
+      <div class="flow-arr">→</div>
+      <div class="flow-node">
+        <div class="flow-emoji">🇩🇪</div>
+        <div class="flow-name">Fournisseur</div>
+        <div class="flow-desc">Reçoit l'USDC, convertit en EUR</div>
+      </div>
+      <div class="flow-arr">→</div>
+      <div class="flow-node" style="background:var(--green-bg)">
+        <div class="flow-emoji">✅</div>
+        <div class="flow-name">Règlement</div>
+        <div class="flow-desc">&lt; 1 min · Frais &lt; 0,1 %</div>
+      </div>
+    </div>
+
+    <!-- INFOGRAPHIC: Acteurs ecosystem -->
+    <div class="infographic">
+      <svg viewBox="0 0 900 220" xmlns="http://www.w3.org/2000/svg" style="width:100%;border:1px solid var(--line);border-radius:14px;background:#fff">
+        <text x="450" y="28" font-size="11" fill="#7a7670" font-weight="600" letter-spacing="1" text-anchor="middle">ÉCOSYSTÈME DES ACTEURS</text>
+
+        <!-- Émetteurs -->
+        <rect x="30" y="45" width="190" height="150" rx="10" fill="#edf5f1" stroke="#c3ddd3" stroke-width="1"/>
+        <text x="125" y="70" font-size="12" fill="#1a6648" font-weight="700" text-anchor="middle">🏦 Émetteurs</text>
+        <text x="125" y="92" font-size="11" fill="#7a7670" text-anchor="middle">Circle (USDC)</text>
+        <text x="125" y="110" font-size="11" fill="#7a7670" text-anchor="middle">Tether (USDT)</text>
+        <text x="125" y="128" font-size="11" fill="#7a7670" text-anchor="middle">SG Forge (SG-EUR)</text>
+        <text x="125" y="146" font-size="11" fill="#7a7670" text-anchor="middle">Qivalis (EURI)</text>
+        <text x="125" y="175" font-size="10" fill="#1a6648" text-anchor="middle">Gèrent les réserves</text>
+        <text x="125" y="188" font-size="10" fill="#1a6648" text-anchor="middle">et émettent les tokens</text>
+
+        <!-- Arrows -->
+        <line x1="220" y1="120" x2="270" y2="120" stroke="#e4e2dd" stroke-width="1.5" marker-end="url(#arr)"/>
+        <line x1="630" y1="120" x2="680" y2="120" stroke="#e4e2dd" stroke-width="1.5" marker-end="url(#arr)"/>
+        <line x1="450" y1="55" x2="450" y2="85" stroke="#e4e2dd" stroke-width="1.5" marker-end="url(#arr)"/>
+        <defs>
+          <marker id="arr" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+            <path d="M0,0 L0,6 L8,3 z" fill="#c0bdb5"/>
+          </marker>
+        </defs>
+
+        <!-- Blockchain (centre) -->
+        <rect x="270" y="85" width="360" height="90" rx="10" fill="#f0f0f8" stroke="#c5d2e8" stroke-width="1"/>
+        <text x="450" y="112" font-size="13" fill="#1a3a6b" font-weight="700" text-anchor="middle">⛓️ Blockchain</text>
+        <text x="450" y="132" font-size="11" fill="#7a7670" text-anchor="middle">Ethereum · Solana · Polygon</text>
+        <text x="450" y="150" font-size="10" fill="#7a7670" text-anchor="middle">Validation des transactions — Smart contracts</text>
+        <text x="450" y="165" font-size="10" fill="#7a7670" text-anchor="middle">Registre public immuable</text>
+
+        <!-- Utilisateurs -->
+        <rect x="680" y="45" width="190" height="150" rx="10" fill="#edf5f1" stroke="#c3ddd3" stroke-width="1"/>
+        <text x="775" y="70" font-size="12" fill="#1a6648" font-weight="700" text-anchor="middle">💼 Utilisateurs</text>
+        <text x="775" y="92" font-size="11" fill="#7a7670" text-anchor="middle">Entreprises (SpaceX…)</text>
+        <text x="775" y="110" font-size="11" fill="#7a7670" text-anchor="middle">Particuliers</text>
+        <text x="775" y="128" font-size="11" fill="#7a7670" text-anchor="middle">Exchanges (Binance…)</text>
+        <text x="775" y="146" font-size="11" fill="#7a7670" text-anchor="middle">DeFi Protocols</text>
+        <text x="775" y="175" font-size="10" fill="#1a6648" text-anchor="middle">Envoient, reçoivent,</text>
+        <text x="775" y="188" font-size="10" fill="#1a6648" text-anchor="middle">échangent des tokens</text>
+
+        <!-- Banques FR -->
+        <text x="450" y="210" font-size="10" fill="#7a7670" text-anchor="middle">Banques françaises (BNP, SG, CA) — en phase d'exploration et d'adoption progressive</text>
+      </svg>
+    </div>
+
+    <div class="grid-3">
+      <div class="card">
+        <span class="card-icon">🏦</span>
+        <h3>Émetteurs</h3>
+        <p><strong>Circle (USDC)</strong> et <strong>Tether (USDT)</strong> dominent. Ils émettent les tokens et gèrent les réserves. Circle publie des audits mensuels.</p>
+      </div>
+      <div class="card">
+        <span class="card-icon">⛏️</span>
+        <h3>Blockchain</h3>
+        <p>Ethereum reste la référence. Solana et Polygon offrent des frais quasi nuls. C'est le rail sur lequel circulent les tokens.</p>
+      </div>
+      <div class="card">
+        <span class="card-icon">🏛️</span>
+        <h3>Banques françaises</h3>
+        <p>BNP, SG et CA explorent les stablecoins euro. SG Forge a émis le premier stablecoin euro bancaire agréé MiCA.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══ DIAPO 3 — RÉGULATION ═══ -->
+<section id="regulation" class="fade">
+  <div class="page">
+    <div class="eyebrow">Diapo 3</div>
+    <h2>Régulation &amp; actualités</h2>
+    <p class="lead">L'Europe est en avance mondiale sur la régulation des cryptoactifs avec le règlement MiCA.</p>
+
+    <div class="timeline">
+      <div class="tl-item">
+        <div class="tl-year">2020</div>
+        <div class="tl-line"></div>
+        <div class="tl-content"><h3>Proposition MiCA</h3><p>La Commission européenne publie le premier cadre réglementaire mondial ciblant explicitement les stablecoins.</p></div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-year">2023</div>
+        <div class="tl-line"></div>
+        <div class="tl-content"><h3>MiCA adopté par le Parlement Européen</h3><p>Les émetteurs doivent détenir des réserves liquides et obtenir un agrément. Supervision par l'AMF en France.</p></div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-year">Juin 2024</div>
+        <div class="tl-line"></div>
+        <div class="tl-content"><h3>Entrée en vigueur — volet stablecoins</h3><p>Tether (USDT) non conforme, retiré des grandes plateformes UE. USDC (Circle) devient la référence réglementaire européenne.</p></div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-year">2025</div>
+        <div class="tl-line"></div>
+        <div class="tl-content"><h3>USA — Retour offensif pro-stablecoin</h3><p>L'administration Trump relance une stratégie d'expansion du dollar numérique via USDC et USDT à l'échelle mondiale.</p></div>
+      </div>
+    </div>
+
+    <!-- INFOGRAPHIC: MiCA obligations -->
+    <div class="infographic">
+      <svg viewBox="0 0 900 140" xmlns="http://www.w3.org/2000/svg" style="width:100%;border:1px solid var(--line);border-radius:14px;background:#fff">
+        <text x="450" y="28" font-size="11" fill="#1a6648" font-weight="600" letter-spacing="1" text-anchor="middle">CE QUE MiCA IMPOSE AUX ÉMETTEURS DE STABLECOINS</text>
+        <!-- 5 pillars -->
+        <rect x="30"  y="45" width="148" height="78" rx="8" fill="#edf5f1" stroke="#c3ddd3" stroke-width="1"/>
+        <text x="104" y="72"  font-size="18" text-anchor="middle">🏦</text>
+        <text x="104" y="92"  font-size="11" fill="#1a6648" font-weight="600" text-anchor="middle">Réserves</text>
+        <text x="104" y="108" font-size="10" fill="#7a7670" text-anchor="middle">liquides obligatoires</text>
+
+        <rect x="194" y="45" width="148" height="78" rx="8" fill="#edf5f1" stroke="#c3ddd3" stroke-width="1"/>
+        <text x="268" y="72"  font-size="18" text-anchor="middle">📋</text>
+        <text x="268" y="92"  font-size="11" fill="#1a6648" font-weight="600" text-anchor="middle">Agrément</text>
+        <text x="268" y="108" font-size="10" fill="#7a7670" text-anchor="middle">autorité nationale</text>
+
+        <rect x="358" y="45" width="148" height="78" rx="8" fill="#edf5f1" stroke="#c3ddd3" stroke-width="1"/>
+        <text x="432" y="72"  font-size="18" text-anchor="middle">🔍</text>
+        <text x="432" y="92"  font-size="11" fill="#1a6648" font-weight="600" text-anchor="middle">Audits</text>
+        <text x="432" y="108" font-size="10" fill="#7a7670" text-anchor="middle">réguliers et publics</text>
+
+        <rect x="522" y="45" width="148" height="78" rx="8" fill="#edf5f1" stroke="#c3ddd3" stroke-width="1"/>
+        <text x="596" y="72"  font-size="18" text-anchor="middle">🪪</text>
+        <text x="596" y="92"  font-size="11" fill="#1a6648" font-weight="600" text-anchor="middle">KYC / AML</text>
+        <text x="596" y="108" font-size="10" fill="#7a7670" text-anchor="middle">lutte anti-blanchiment</text>
+
+        <rect x="686" y="45" width="184" height="78" rx="8" fill="#edf5f1" stroke="#c3ddd3" stroke-width="1"/>
+        <text x="778" y="72"  font-size="18" text-anchor="middle">🛡️</text>
+        <text x="778" y="92"  font-size="11" fill="#1a6648" font-weight="600" text-anchor="middle">Protection</text>
+        <text x="778" y="108" font-size="10" fill="#7a7670" text-anchor="middle">des porteurs de tokens</text>
+      </svg>
+    </div>
+
+    <div class="grid-3">
+      <div class="card">
+        <span class="card-icon">⚖️</span>
+        <h3>Enjeux juridiques</h3>
+        <p>Responsabilité en cas de dépeg, protection des déposants, KYC/AML obligatoires pour les émetteurs agréés.</p>
+      </div>
+      <div class="card">
+        <span class="card-icon">💰</span>
+        <h3>Fiscalité en France</h3>
+        <p>Les plus-values sont imposées à <strong>30 % (flat tax)</strong> lors de la cession contre monnaie fiat. Conservation = pas d'imposition immédiate.</p>
+      </div>
+      <div class="card">
+        <span class="card-icon">🇪🇺</span>
+        <h3>Euro numérique (BCE)</h3>
+        <p>Prévu pour 2027. Concurrence directe aux stablecoins privés, mais porté par une institution souveraine.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<div class="part-divider">
+  <div class="eyebrow">Partie 2</div>
+  <h2>Analyse &amp; raisonnement</h2>
+</div>
+
+
+<!-- ═══ DIAPO 4 — TRÉSORERIE ═══ -->
+<section id="tresorerie" class="fade">
+  <div class="page">
+    <div class="eyebrow">Diapo 4 — Angle financier</div>
+    <h2>Stablecoins &amp; gestion de trésorerie</h2>
+    <p class="lead">Pour une multinationale comme SpaceX, les stablecoins ouvrent des opportunités concrètes de réduction des coûts et d'optimisation des flux.</p>
+
+    <div class="big-nums">
+      <div class="big-num">
+        <div class="big-num-val" style="color:var(--red)">3–5 %</div>
+        <div class="big-num-label">Frais SWIFT internationaux moyens</div>
+      </div>
+      <div class="big-num">
+        <div class="big-num-val" style="color:var(--green)">&lt; 0,1 %</div>
+        <div class="big-num-label">Frais stablecoin on-chain</div>
+      </div>
+      <div class="big-num">
+        <div class="big-num-val" style="color:var(--red)">2–5 j</div>
+        <div class="big-num-label">Délai virement international classique</div>
+      </div>
+      <div class="big-num">
+        <div class="big-num-val" style="color:var(--green)">&lt; 60 s</div>
+        <div class="big-num-label">Délai transfert stablecoin</div>
+      </div>
+    </div>
+
+    <!-- INFOGRAPHIC: Cost waterfall -->
+    <div class="infographic">
+      <svg viewBox="0 0 900 200" xmlns="http://www.w3.org/2000/svg" style="width:100%;border:1px solid var(--line);border-radius:14px;background:#fff">
+        <text x="450" y="28" font-size="11" fill="#7a7670" font-weight="600" letter-spacing="1" text-anchor="middle">COÛT D'UN VIREMENT DE 1 000 000 $ — SWIFT VS STABLECOIN</text>
+
+        <!-- SWIFT breakdown -->
+        <text x="60" y="55" font-size="11" fill="#7a7670" font-weight="600">SWIFT</text>
+        <!-- Banque émettrice -->
+        <rect x="20" y="65" width="180" height="30" rx="5" fill="#b03a2e" opacity=".7"/>
+        <text x="110" y="85" font-size="11" fill="#fff" text-anchor="middle">Banque émettrice: ~$5 000</text>
+        <!-- Correspondant -->
+        <rect x="20" y="100" width="130" height="30" rx="5" fill="#b03a2e" opacity=".5"/>
+        <text x="85" y="120" font-size="11" fill="#fff" text-anchor="middle">Correspondant: ~$3 500</text>
+        <!-- Change -->
+        <rect x="20" y="135" width="100" height="30" rx="5" fill="#b03a2e" opacity=".35"/>
+        <text x="70" y="155" font-size="11" fill="#b03a2e" text-anchor="middle">Change: ~$2 500</text>
+        <!-- Total SWIFT -->
+        <text x="20" y="185" font-size="12" fill="#b03a2e" font-weight="700">Total: ~$11 000–$50 000</text>
+
+        <!-- VS -->
+        <text x="450" y="120" font-size="22" fill="#c0bdb5" font-weight="700" text-anchor="middle">VS</text>
+
+        <!-- Stablecoin -->
+        <text x="680" y="55" font-size="11" fill="#1a6648" font-weight="600" text-anchor="middle">STABLECOIN</text>
+        <rect x="560" y="65" width="240" height="30" rx="5" fill="#1a6648" opacity=".15" stroke="#c3ddd3" stroke-width="1"/>
+        <text x="680" y="85" font-size="11" fill="#1a6648" text-anchor="middle">Frais réseau: ~$100–$500</text>
+        <!-- Savings -->
+        <rect x="560" y="110" width="240" height="60" rx="8" fill="#edf5f1" stroke="#c3ddd3" stroke-width="1"/>
+        <text x="680" y="137" font-size="12" fill="#1a6648" font-weight="700" text-anchor="middle">Économie :</text>
+        <text x="680" y="158" font-size="20" fill="#1a6648" font-weight="700" font-family="'Instrument Serif',serif" text-anchor="middle">jusqu'à $49 500</text>
+        <text x="680" y="185" font-size="11" fill="#7a7670" text-anchor="middle">sur un seul virement de 1 M$</text>
+      </svg>
+    </div>
+
+    <div class="diff-box">
+      <div class="diff-col trad">
+        <h3>🏦 Système bancaire classique</h3>
+        <div class="metric"><span class="metric-k">Délai</span><span class="metric-v v-r2">2–5 jours</span></div>
+        <div class="metric"><span class="metric-k">Frais</span><span class="metric-v v-r2">3–5 %</span></div>
+        <div class="metric"><span class="metric-k">Disponibilité</span><span class="metric-v v-r2">Lun–Ven</span></div>
+        <div class="metric"><span class="metric-k">Intermédiaires</span><span class="metric-v v-r2">3 à 5 banques</span></div>
+        <div class="metric"><span class="metric-k">Transparence</span><span class="metric-v v-r2">Limitée</span></div>
+      </div>
+      <div class="diff-vs">VS</div>
+      <div class="diff-col chain">
+        <h3>⛓️ Stablecoin on-chain</h3>
+        <div class="metric"><span class="metric-k">Délai</span><span class="metric-v v-g2">&lt; 1 minute</span></div>
+        <div class="metric"><span class="metric-k">Frais</span><span class="metric-v v-g2">&lt; 0,1 %</span></div>
+        <div class="metric"><span class="metric-k">Disponibilité</span><span class="metric-v v-g2">24/7/365</span></div>
+        <div class="metric"><span class="metric-k">Intermédiaires</span><span class="metric-v v-g2">0 (smart contract)</span></div>
+        <div class="metric"><span class="metric-k">Transparence</span><span class="metric-v v-g2">Totale (blockchain)</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══ DIAPO 5 — GÉOPOLITIQUE ═══ -->
+<section id="geopolitique" class="fade">
+  <div class="page">
+    <div class="eyebrow">Diapo 5 — Angle géopolitique</div>
+    <h2>Stablecoins &amp; souveraineté mondiale</h2>
+    <p class="lead">Le stablecoin dollar n'est pas qu'un outil financier — c'est un vecteur de puissance géopolitique.</p>
+
+    <!-- INFOGRAPHIC: géopolitique map visuelle -->
+    <div class="infographic">
+      <svg viewBox="0 0 900 170" xmlns="http://www.w3.org/2000/svg" style="width:100%;border:1px solid var(--line);border-radius:14px;background:#fff">
+        <text x="450" y="26" font-size="11" fill="#7a7670" font-weight="600" letter-spacing="1" text-anchor="middle">STABLECOINS DOLLAR : DOMINATION MONDIALE PAR RÉGION</text>
+
+        <!-- Bars -->
+        <!-- AM Nord -->
+        <text x="95" y="50" font-size="10" fill="#7a7670" text-anchor="middle">Amér. Nord</text>
+        <rect x="20" y="58" width="150" height="22" rx="4" fill="#e4e2dd"/>
+        <rect x="20" y="58" width="135" height="22" rx="4" fill="#1a1916" opacity=".75"/>
+        <text x="160" y="73" font-size="11" fill="#1a1916" font-weight="700">90 %</text>
+
+        <!-- AM Sud -->
+        <text x="95" y="92" font-size="10" fill="#7a7670" text-anchor="middle">Amér. du Sud</text>
+        <rect x="20" y="100" width="150" height="22" rx="4" fill="#e4e2dd"/>
+        <rect x="20" y="100" width="128" height="22" rx="4" fill="#1a1916" opacity=".7"/>
+        <text x="160" y="115" font-size="11" fill="#1a1916" font-weight="700">85 %</text>
+
+        <!-- Asie -->
+        <text x="370" y="50" font-size="10" fill="#7a7670" text-anchor="middle">Asie du SE</text>
+        <rect x="295" y="58" width="150" height="22" rx="4" fill="#e4e2dd"/>
+        <rect x="295" y="58" width="117" height="22" rx="4" fill="#1a1916" opacity=".6"/>
+        <text x="435" y="73" font-size="11" fill="#1a1916" font-weight="700">78 %</text>
+
+        <!-- Afrique -->
+        <text x="370" y="92" font-size="10" fill="#7a7670" text-anchor="middle">Afrique</text>
+        <rect x="295" y="100" width="150" height="22" rx="4" fill="#e4e2dd"/>
+        <rect x="295" y="100" width="105" height="22" rx="4" fill="#1a1916" opacity=".55"/>
+        <text x="435" y="115" font-size="11" fill="#1a1916" font-weight="700">70 %</text>
+
+        <!-- Europe -->
+        <text x="645" y="50" font-size="10" fill="#7a7670" text-anchor="middle">Europe UE</text>
+        <rect x="570" y="58" width="150" height="22" rx="4" fill="#e4e2dd"/>
+        <rect x="570" y="58" width="82" height="22" rx="4" fill="#1a3a6b" opacity=".7"/>
+        <text x="710" y="73" font-size="11" fill="#1a3a6b" font-weight="700">55 %</text>
+
+        <!-- Chine/Russie -->
+        <text x="645" y="92" font-size="10" fill="#7a7670" text-anchor="middle">Chine / Russie</text>
+        <rect x="570" y="100" width="150" height="22" rx="4" fill="#e4e2dd"/>
+        <rect x="570" y="100" width="15" height="22" rx="4" fill="#1a1916" opacity=".3"/>
+        <text x="710" y="115" font-size="11" fill="#7a7670" font-weight="700">10 %</text>
+
+        <!-- Legend -->
+        <rect x="20"  y="148" width="12" height="8" rx="2" fill="#1a1916" opacity=".7"/>
+        <text x="37"  y="157" font-size="10" fill="#7a7670">Stablecoins USD</text>
+        <rect x="150" y="148" width="12" height="8" rx="2" fill="#1a3a6b" opacity=".7"/>
+        <text x="167" y="157" font-size="10" fill="#7a7670">Stablecoins EUR (émergents)</text>
+        <text x="450" y="157" font-size="10" fill="#7a7670" text-anchor="middle">Part des stablecoins libellés en USD dans les échanges de chaque région</text>
+      </svg>
+    </div>
+
+    <div class="geo-grid">
+      <div class="geo-panel" style="display:flex;flex-direction:column;gap:1rem;">
+        <div class="card" style="border:none;padding:0;background:transparent;">
+          <span class="card-icon">🦅</span>
+          <h3>L'arme dollar 2.0</h3>
+          <p>USDC et USDT permettent au dollar de s'étendre sans Fed ni banque centrale. Les pays sous-bancarisés adoptent le dollar numérique faute d'alternative.</p>
+        </div>
+        <div class="card" style="border:none;padding:0;background:transparent;">
+          <span class="card-icon">⚠️</span>
+          <h3>Dépendance aux acteurs privés</h3>
+          <p>USDT est émis par Tether, société privée. Peut-on accepter que l'infrastructure de paiement mondiale soit entre des mains privées ?</p>
+        </div>
+      </div>
+      <div class="geo-panel">
+        <h3>🏰 Réponse européenne</h3>
+        <p style="font-size:.92rem;color:var(--mid);margin-bottom:1.2rem;">L'Europe riposte avec des acteurs réglementés MiCA — dont deux acteurs français de premier plan :</p>
+        <!-- Mini acteur cards -->
+        <div style="display:flex;flex-direction:column;gap:.75rem;">
+          <div style="background:var(--green-bg);border:1px solid #c3ddd3;border-radius:10px;padding:1rem;">
+            <div style="font-size:.82rem;font-weight:700;color:var(--green);margin-bottom:.25rem;">SG Forge — SG-EUR</div>
+            <div style="font-size:.85rem;color:var(--mid);">Filiale crypto de Société Générale. Premier stablecoin euro émis par une grande banque agréée MiCA.</div>
+          </div>
+          <div style="background:var(--green-bg);border:1px solid #c3ddd3;border-radius:10px;padding:1rem;">
+            <div style="font-size:.82rem;font-weight:700;color:var(--green);margin-bottom:.25rem;">Qivalis — EURI</div>
+            <div style="font-size:.85rem;color:var(--mid);">Acteur français émergent, stablecoin euro entièrement réglementé et audité selon les exigences MiCA.</div>
+          </div>
+          <div style="background:var(--blue-bg);border:1px solid #c5d2e8;border-radius:10px;padding:1rem;">
+            <div style="font-size:.82rem;font-weight:700;color:var(--blue);margin-bottom:.25rem;">BCE — Euro numérique</div>
+            <div style="font-size:.85rem;color:var(--mid);">Riposte souveraine. Lancement prévu 2027. Concurrence directe aux stablecoins privés.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══ DIAPO 6 — DISRUPTION ═══ -->
+<section id="disruption" class="fade">
+  <div class="page">
+    <div class="eyebrow">Diapo 6 — Disruption</div>
+    <h2>La disruption du système bancaire</h2>
+    <p class="lead">Les stablecoins ne détruisent pas les banques — mais ils redéfinissent leur utilité et forcent leur adaptation.</p>
+
+    <div class="grid-2">
+      <div class="card" style="border-top:2.5px solid var(--red)">
+        <span class="card-icon">⬇️</span>
+        <h3 style="color:var(--red)">Menaces</h3>
+        <ul class="pc-list" style="margin-top:.5rem">
+          <li>Désintermédiation des paiements internationaux</li>
+          <li>Réduction des frais de virement perçus</li>
+          <li>Perte du rôle d'intermédiaire de confiance</li>
+          <li>Concurrence DeFi sur le crédit</li>
+        </ul>
+      </div>
+      <div class="card" style="border-top:2.5px solid var(--green)">
+        <span class="card-icon">⬆️</span>
+        <h3 style="color:var(--green)">Opportunités</h3>
+        <ul class="pc-list" style="margin-top:.5rem">
+          <li>Émettre leurs propres stablecoins euro (MiCA)</li>
+          <li>Tokeniser des actifs financiers</li>
+          <li>Proposer de la custody crypto réglementée</li>
+          <li>Connecter la finance traditionnelle à la DeFi</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- INFOGRAPHIC: Désintermédiation visuelle -->
+    <div class="infographic">
+      <svg viewBox="0 0 900 160" xmlns="http://www.w3.org/2000/svg" style="width:100%;border:1px solid var(--line);border-radius:14px;background:#fff">
+        <text x="450" y="26" font-size="11" fill="#7a7670" font-weight="600" letter-spacing="1" text-anchor="middle">DÉSINTERMÉDIATION : AVANT ET APRÈS LES STABLECOINS</text>
+
+        <!-- AVANT -->
+        <text x="200" y="50" font-size="11" fill="#b03a2e" font-weight="600" text-anchor="middle">AVANT — Système SWIFT</text>
+        <rect x="20"  y="60" width="70" height="40" rx="6" fill="#fdf0ee" stroke="#e8c4c1"/>
+        <text x="55"  y="85" font-size="10" fill="#b03a2e" text-anchor="middle">Émetteur</text>
+        <line x1="90" y1="80" x2="115" y2="80" stroke="#e8c4c1" stroke-width="1.5" marker-end="url(#arr2)"/>
+        <defs><marker id="arr2" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto"><path d="M0,0 L0,6 L6,3 z" fill="#c0bdb5"/></marker></defs>
+        <rect x="115" y="60" width="70" height="40" rx="6" fill="#fdf0ee" stroke="#e8c4c1"/>
+        <text x="150" y="85" font-size="10" fill="#b03a2e" text-anchor="middle">Bq A</text>
+        <line x1="185" y1="80" x2="210" y2="80" stroke="#e8c4c1" stroke-width="1.5" marker-end="url(#arr2)"/>
+        <rect x="210" y="60" width="70" height="40" rx="6" fill="#fdf0ee" stroke="#e8c4c1"/>
+        <text x="245" y="85" font-size="10" fill="#b03a2e" text-anchor="middle">SWIFT</text>
+        <line x1="280" y1="80" x2="305" y2="80" stroke="#e8c4c1" stroke-width="1.5" marker-end="url(#arr2)"/>
+        <rect x="305" y="60" width="70" height="40" rx="6" fill="#fdf0ee" stroke="#e8c4c1"/>
+        <text x="340" y="85" font-size="10" fill="#b03a2e" text-anchor="middle">Bq B</text>
+        <line x1="375" y1="80" x2="400" y2="80" stroke="#e8c4c1" stroke-width="1.5" marker-end="url(#arr2)"/>
+        <rect x="400" y="60" width="70" height="40" rx="6" fill="#fdf0ee" stroke="#e8c4c1"/>
+        <text x="435" y="85" font-size="10" fill="#b03a2e" text-anchor="middle">Destinat.</text>
+        <text x="225" y="130" font-size="10" fill="#b03a2e" text-anchor="middle">⏱ 2–5 jours · 💸 3–5% de frais · 4 intermédiaires</text>
+
+        <!-- Divider -->
+        <line x1="500" y1="45" x2="500" y2="145" stroke="#e4e2dd" stroke-width="1.5"/>
+
+        <!-- APRÈS -->
+        <text x="700" y="50" font-size="11" fill="#1a6648" font-weight="600" text-anchor="middle">APRÈS — Stablecoin</text>
+        <rect x="560" y="60" width="70" height="40" rx="6" fill="#edf5f1" stroke="#c3ddd3"/>
+        <text x="595" y="85" font-size="10" fill="#1a6648" text-anchor="middle">Émetteur</text>
+        <line x1="630" y1="80" x2="660" y2="80" stroke="#1a6648" stroke-width="1.5" marker-end="url(#arr3)"/>
+        <defs><marker id="arr3" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto"><path d="M0,0 L0,6 L6,3 z" fill="#1a6648"/></marker></defs>
+        <rect x="660" y="55" width="80" height="50" rx="6" fill="#1a6648" opacity=".1" stroke="#1a6648" stroke-width="1.5"/>
+        <text x="700" y="79" font-size="10" fill="#1a6648" font-weight="600" text-anchor="middle">⛓️ Blockchain</text>
+        <text x="700" y="95" font-size="9" fill="#1a6648" text-anchor="middle">smart contract</text>
+        <line x1="740" y1="80" x2="770" y2="80" stroke="#1a6648" stroke-width="1.5" marker-end="url(#arr3)"/>
+        <rect x="770" y="60" width="70" height="40" rx="6" fill="#edf5f1" stroke="#c3ddd3"/>
+        <text x="805" y="85" font-size="10" fill="#1a6648" text-anchor="middle">Destinat.</text>
+        <text x="700" y="130" font-size="10" fill="#1a6648" font-weight="600" text-anchor="middle">⚡ &lt; 60 s · 💚 &lt; 0,1% · 0 intermédiaire</text>
+      </svg>
+    </div>
+
+    <div class="compare" style="margin-top:2rem">
+      <div class="compare-header">
+        <div>Acteur</div>
+        <div>Conformité MiCA</div>
+        <div>Statut</div>
+      </div>
+      <div class="compare-row">
+        <div class="key">Circle (USDC)</div>
+        <div><span class="badge badge-green">✓ Conforme</span></div>
+        <div>Référence réglementaire UE</div>
+      </div>
+      <div class="compare-row">
+        <div class="key">Tether (USDT)</div>
+        <div><span class="badge badge-gold">⚠ Partiel</span></div>
+        <div>En cours de mise en conformité</div>
+      </div>
+      <div class="compare-row">
+        <div class="key">SG Forge (SG-EUR)</div>
+        <div><span class="badge badge-green">✓ Conforme</span></div>
+        <div>Filiale crypto SG — 1er stablecoin euro bancaire agréé MiCA</div>
+      </div>
+      <div class="compare-row">
+        <div class="key">Qivalis (EURI)</div>
+        <div><span class="badge badge-green">✓ Conforme</span></div>
+        <div>Stablecoin euro réglementé, acteur français émergent</div>
+      </div>
+      <div class="compare-row">
+        <div class="key">BNP Paribas</div>
+        <div><span class="badge badge-gold">En exploration</span></div>
+        <div>Pilotes tokenisation d'actifs</div>
+      </div>
+      <div class="compare-row">
+        <div class="key">BCE (Euro numérique)</div>
+        <div><span class="badge badge-green">Souverain</span></div>
+        <div>Lancement prévu 2027</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══ DIAPO 7 — RISQUES ═══ -->
+<section id="risques" class="fade">
+  <div class="page">
+    <div class="eyebrow">Diapo 7 — Risques</div>
+    <h2>Les risques à ne pas ignorer</h2>
+    <p class="lead">Derrière la promesse d'efficacité, les stablecoins portent des risques structurels réels.</p>
+
+    <div class="alert">
+      <div class="alert-icon">💥</div>
+      <div>
+        <h3>Cas d'étude : Terra / UST — Mai 2022</h3>
+        <p>Un stablecoin algorithmique promettant 20 % d'APY. Effondrement en 72 h. <strong>40 milliards de dollars évaporés.</strong> La preuve que sans réserves réelles, la stabilité n'est qu'une illusion mathématique.</p>
+      </div>
+    </div>
+
+    <!-- INFOGRAPHIC: Terra crash timeline -->
+    <div class="infographic">
+      <svg viewBox="0 0 900 140" xmlns="http://www.w3.org/2000/svg" style="width:100%;border:1px solid var(--line);border-radius:14px;background:#fff">
+        <text x="450" y="25" font-size="11" fill="#b03a2e" font-weight="600" letter-spacing="1" text-anchor="middle">TERRA/UST — EFFONDREMENT EN 72H (MAI 2022)</text>
+
+        <!-- Price line (faking a crash) -->
+        <polyline points="30,50 120,48 210,52 280,50 320,60 360,90 400,110 450,125 500,128 600,130 700,130 850,130"
+          fill="none" stroke="#b03a2e" stroke-width="2.5" stroke-linejoin="round"/>
+        <!-- Area fill -->
+        <polygon points="30,50 120,48 210,52 280,50 320,60 360,90 400,110 450,125 500,128 600,130 700,130 850,130 850,135 30,135"
+          fill="#b03a2e" opacity=".08"/>
+
+        <!-- Annotations -->
+        <line x1="280" y1="50" x2="280" y2="35" stroke="#b03a2e" stroke-width="1" stroke-dasharray="3,3"/>
+        <text x="280" y="30" font-size="9" fill="#b03a2e" text-anchor="middle">7 mai — panique</text>
+
+        <line x1="390" y1="105" x2="390" y2="90" stroke="#b03a2e" stroke-width="1" stroke-dasharray="3,3"/>
+        <text x="390" y="85" font-size="9" fill="#b03a2e" text-anchor="middle">8 mai — dépeg</text>
+
+        <line x1="490" y1="128" x2="490" y2="113" stroke="#b03a2e" stroke-width="1" stroke-dasharray="3,3"/>
+        <text x="490" y="108" font-size="9" fill="#b03a2e" text-anchor="middle">10 mai — $0,10</text>
+
+        <!-- Dollar peg line -->
+        <line x1="30" y1="50" x2="850" y2="50" stroke="#c0bdb5" stroke-width="1" stroke-dasharray="5,3"/>
+        <text x="860" y="54" font-size="9" fill="#c0bdb5">$1</text>
+
+        <!-- Callout -->
+        <rect x="560" y="45" width="260" height="70" rx="8" fill="#fdf0ee" stroke="#e8c4c1"/>
+        <text x="690" y="68" font-size="11" fill="#b03a2e" font-weight="700" text-anchor="middle">$40 milliards évaporés</text>
+        <text x="690" y="86" font-size="10" fill="#7a7670" text-anchor="middle">en moins de 72 heures</text>
+        <text x="690" y="104" font-size="10" fill="#7a7670" text-anchor="middle">Millions d'investisseurs ruinés</text>
+      </svg>
+    </div>
+
+    <div class="risk-grid">
+      <div class="risk-item">
+        <h3>Risques techniques</h3>
+        <p>Bugs de smart contract, pannes de réseau, attaques 51 %, problèmes d'oracle. La blockchain n'est pas infaillible.</p>
+        <span class="badge badge-gold">Risque moyen</span>
+      </div>
+      <div class="risk-item">
+        <h3>Risque de dépeg</h3>
+        <p>Un stablecoin peut perdre sa parité si les réserves sont insuffisantes ou manipulées. Le "bank run crypto" est réel.</p>
+        <span class="badge badge-red">Risque élevé (algo)</span>
+      </div>
+      <div class="risk-item">
+        <h3>Risques réglementaires</h3>
+        <p>Une nouvelle loi peut bloquer l'usage ou reclassifier le token. L'instabilité juridique mondiale reste un facteur clé.</p>
+        <span class="badge badge-gold">Risque moyen</span>
+      </div>
+      <div class="risk-item">
+        <h3>Dépendance aux émetteurs privés</h3>
+        <p>Circle et Tether peuvent geler des wallets et refuser des transactions. Ce sont des entités centralisées très puissantes.</p>
+        <span class="badge badge-red">Risque élevé</span>
+      </div>
+    </div>
+
+    <div class="pros-cons">
+      <div class="pros">
+        <h3>Avantages</h3>
+        <ul class="pc-list">
+          <li>Paiements instantanés 24 h/24, partout</li>
+          <li>Frais réduits de 95 % vs. SWIFT</li>
+          <li>Transparence totale sur blockchain</li>
+          <li>Accessibilité sans compte bancaire</li>
+          <li>Programmabilité via smart contracts</li>
+        </ul>
+      </div>
+      <div class="cons">
+        <h3>Risques</h3>
+        <ul class="pc-list">
+          <li>Dépeg possible (surtout algorithmique)</li>
+          <li>Centralisation réelle des grands émetteurs</li>
+          <li>Instabilité juridique mondiale</li>
+          <li>Pas de protection type FGDR</li>
+          <li>Complexité technique pour les entreprises</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<div class="part-divider">
+  <div class="eyebrow">Partie 3</div>
+  <h2>Conclusion &amp; ouverture</h2>
+</div>
+
+
+<!-- ═══ CONCLUSION ═══ -->
+<section id="conclusion" class="fade">
+  <div class="page" style="text-align:center">
+    <div class="eyebrow" style="justify-content:center">Synthèse</div>
+    <h2>Les stablecoins —<br><em>l'infrastructure de paiement du monde de demain</em></h2>
+    <p class="lead" style="margin:1rem auto 0;text-align:center">Plus qu'une cryptomonnaie stable, ils redéfinissent qui contrôle la monnaie, les paiements et la souveraineté financière mondiale.</p>
+
+    <div class="pill-row">
+      <div class="pill">⚡ Vitesse sans précédent</div>
+      <div class="pill">🌍 Portée mondiale</div>
+      <div class="pill">🔐 Transparence blockchain</div>
+      <div class="pill">💼 Adoption entreprises</div>
+      <div class="pill">⚖️ Encadrement MiCA</div>
+      <div class="pill">🏦 Transformation bancaire</div>
+    </div>
+
+    <!-- INFOGRAPHIC: Synthèse radar / axes -->
+    <div class="infographic" style="max-width:860px;margin:0 auto 2.5rem">
+      <svg viewBox="0 0 860 130" xmlns="http://www.w3.org/2000/svg" style="width:100%;border:1px solid var(--line);border-radius:14px;background:#fff">
+        <text x="430" y="22" font-size="11" fill="#7a7670" font-weight="600" letter-spacing="1" text-anchor="middle">BILAN — CE QUE CHANGENT LES STABLECOINS</text>
+        <rect x="20"  y="35" width="155" height="75" rx="8" fill="#edf5f1" stroke="#c3ddd3"/>
+        <text x="97"  y="58" font-size="18" text-anchor="middle">💸</text>
+        <text x="97"  y="78" font-size="11" fill="#1a6648" font-weight="600" text-anchor="middle">Coûts</text>
+        <text x="97"  y="95" font-size="10" fill="#7a7670" text-anchor="middle">− 95 % de frais</text>
+
+        <rect x="190" y="35" width="155" height="75" rx="8" fill="#edf5f1" stroke="#c3ddd3"/>
+        <text x="267" y="58" font-size="18" text-anchor="middle">⚡</text>
+        <text x="267" y="78" font-size="11" fill="#1a6648" font-weight="600" text-anchor="middle">Vitesse</text>
+        <text x="267" y="95" font-size="10" fill="#7a7670" text-anchor="middle">Secondes vs. jours</text>
+
+        <rect x="360" y="35" width="155" height="75" rx="8" fill="#eef2f9" stroke="#c5d2e8"/>
+        <text x="437" y="58" font-size="18" text-anchor="middle">🌍</text>
+        <text x="437" y="78" font-size="11" fill="#1a3a6b" font-weight="600" text-anchor="middle">Souveraineté</text>
+        <text x="437" y="95" font-size="10" fill="#7a7670" text-anchor="middle">Dollar 2.0 vs. Euro</text>
+
+        <rect x="530" y="35" width="155" height="75" rx="8" fill="#fdf8ec" stroke="#e8d9a0"/>
+        <text x="607" y="58" font-size="18" text-anchor="middle">⚖️</text>
+        <text x="607" y="78" font-size="11" fill="#8a6a00" font-weight="600" text-anchor="middle">Régulation</text>
+        <text x="607" y="95" font-size="10" fill="#7a7670" text-anchor="middle">MiCA en avance mondiale</text>
+
+        <rect x="700" y="35" width="140" height="75" rx="8" fill="#fdf0ee" stroke="#e8c4c1"/>
+        <text x="770" y="58" font-size="18" text-anchor="middle">🏦</text>
+        <text x="770" y="78" font-size="11" fill="#b03a2e" font-weight="600" text-anchor="middle">Banques</text>
+        <text x="770" y="95" font-size="10" fill="#7a7670" text-anchor="middle">Menace &amp; opportunité</text>
+      </svg>
+    </div>
+
+    <div class="closing-grid">
+      <div class="closing-card">
+        <div class="card-icon">🔭</div>
+        <h3>Avenir proche</h3>
+        <p>Euro numérique, tokenisation des actifs réels, adoption massive dans les multinationales et l'e-commerce international d'ici 2027.</p>
+      </div>
+      <div class="closing-card">
+        <div class="card-icon">⚖️</div>
+        <h3>Le rôle de MiCA</h3>
+        <p>L'Europe peut devenir l'espace de référence mondiale pour des stablecoins sûrs et conformes. SG Forge, Qivalis et les banques françaises se positionnent.</p>
+      </div>
+      <div class="closing-card">
+        <div class="card-icon">❓</div>
+        <h3>Question ouverte</h3>
+        <p>Les stablecoins privés coexisteront-ils avec l'euro numérique — ou l'un finira-t-il par supplanter l'autre ?</p>
+      </div>
+    </div>
+
+    <div class="thank-you">Merci de votre attention — Des questions ?</div>
+  </div>
+</section>
+
+<a href="#intro" id="scrollTop">↑ Haut</a>
+
+<script>
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('in') });
+  }, { threshold:.07 });
+  document.querySelectorAll('.fade').forEach(el => io.observe(el));
+
+  const btn = document.getElementById('scrollTop');
+  window.addEventListener('scroll', () => btn.classList.toggle('show', scrollY > 500));
+
+  const secs = document.querySelectorAll('section[id], #intro, #story');
+  const links = document.querySelectorAll('.nav-links a');
+  window.addEventListener('scroll', () => {
+    let cur = '';
+    secs.forEach(s => { if(scrollY >= s.offsetTop - 100) cur = s.id });
+    links.forEach(a => a.classList.toggle('active', a.getAttribute('href') === '#' + cur));
+  });
+</script>
+</body>
+</html>
